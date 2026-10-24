@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CampusDesk | Student Management</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <main id="loginView" class="login-shell">
+    <section class="login-card">
+      <div class="brand-mark">CD</div>
+      <p class="eyebrow">CAMPUSDESK · ADMIN PORTAL</p>
+      <h1>Welcome back.</h1>
+      <p class="muted">Sign in to manage student records.</p>
+      <form id="loginForm">
+        <label for="userId">User ID</label>
+        <input id="userId" name="userId" autocomplete="username" placeholder="Enter your user ID" required>
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" autocomplete="current-password" placeholder="Enter password" required>
+        <button class="primary full" type="submit">Sign in <span>→</span></button>
+      </form>
+      <p id="loginMessage" class="message" role="status"></p>
+      <p class="demo-hint">Demo credentials: <b>admin</b> / <b>admin123</b></p>
+    </section>
+  </main>
+
+  <main id="appView" class="app-shell hidden">
+    <aside class="sidebar">
+      <div class="side-brand"><div class="brand-mark small">CD</div><span>CampusDesk</span></div>
+      <p class="nav-label">WORKSPACE</p>
+      <button class="nav-item active" data-section="overview">▦ <span>Overview</span></button>
+      <button class="nav-item" data-section="manage">＋ <span>Manage students</span></button>
+      <button class="nav-item" data-section="records">▤ <span>All records</span></button>
+      <div class="side-bottom"><div class="avatar">A</div><div><b>Administrator</b><small>Signed in</small></div><button id="logoutBtn" class="logout" title="Log out">↗</button></div>
+    </aside>
+
+    <section class="workspace">
+      <header class="topbar"><div><p class="eyebrow">STUDENT ADMINISTRATION</p><h1 id="pageTitle">Overview</h1></div><div class="top-user"><span class="status-dot"></span> Admin session</div></header>
+      <div id="toast" class="toast hidden" role="status"></div>
+
+      <section id="overviewSection" class="section">
+        <div class="welcome-panel"><div><p class="eyebrow light">YOUR CAMPUS, ORGANIZED</p><h2>Student records.<br>All in one place.</h2><p>Manage student details with simple, reliable operations.</p><button class="light-button" data-goto="manage">Manage students <span>→</span></button></div><div class="hero-symbol">✳</div></div>
+        <div class="stats-grid">
+          <article class="stat-card"><span class="stat-icon purple">♙</span><p>Total students</p><h3 id="studentCount">0</h3><small>Current records</small></article>
+          <article class="stat-card"><span class="stat-icon green">✓</span><p>Operations available</p><h3>6</h3><small>CRUD + search + view</small></article>
+          <article class="stat-card"><span class="stat-icon orange">⌁</span><p>Application status</p><h3 class="live-text">Online</h3><small>Local Java server</small></article>
+        </div>
+        <div class="content-card"><div class="card-heading"><div><h3>Recent student records</h3><p class="muted">A quick look at the current collection.</p></div><button class="text-button" data-goto="records">View all →</button></div><div id="recentTable"></div></div>
+      </section>
+
+      <section id="manageSection" class="section hidden">
+        <div class="two-col">
+          <div class="content-card"><div class="card-heading"><div><h3 id="formTitle">Add a student</h3><p class="muted">Enter the student's details below.</p></div><span class="card-icon">＋</span></div>
+            <form id="studentForm" class="student-form">
+              <label for="studentId">Student ID</label><input id="studentId" name="id" placeholder="e.g. 103" required>
+              <label for="studentName">Full name</label><input id="studentName" name="name" placeholder="Student full name" required>
+              <label for="studentCourse">Course</label><input id="studentCourse" name="course" placeholder="e.g. BCA" required>
+              <label for="studentEmail">Email address</label><input id="studentEmail" name="email" type="email" placeholder="student@example.com" required>
+              <div class="button-row"><button class="primary" type="submit" id="saveStudentBtn">Add student</button><button class="secondary hidden" type="button" id="cancelEditBtn">Cancel edit</button></div>
+            </form>
+          </div>
+          <div class="content-card"><div class="card-heading"><div><h3>Find a student</h3><p class="muted">View or search by student ID.</p></div><span class="card-icon">⌕</span></div>
+            <form id="searchForm" class="search-form"><label for="searchId">Student ID</label><div class="search-row"><input id="searchId" name="id" placeholder="Enter student ID" required><button class="primary" type="submit">Search</button></div></form>
+            <div id="searchResult" class="search-result empty-state">Search results will appear here.</div>
+            <div class="helper-note"><b>Tip</b><p>To update a record, click its Edit action in the records table. To delete, use the Delete action.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="recordsSection" class="section hidden">
+        <div class="content-card"><div class="card-heading"><div><h3>All student records</h3><p class="muted">Final display of every record currently stored in the application.</p></div><button class="secondary" id="refreshBtn">↻ Refresh records</button></div><div id="allTable"></div><div class="final-display"><span class="status-dot"></span><span id="finalSummary">Final display ready.</span></div></div>
+      </section>
+      <footer>CampusDesk · Advanced Object-Oriented Programming Lab <span>Java-powered student management</span></footer>
+    </section>
+  </main>
+  <script src="/app.js"></script>
+</body>
+</html>
